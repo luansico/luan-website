@@ -4,9 +4,10 @@ Verified 10 October 2026. The website is published from the dedicated public rep
 
 ## Completed checks
 
-- Node syntax, static build and **9 grouped checks pass**, including bilingual content, approval requirements, unsafe links, contacts and enquiries. CI runs both build and checks before publishing `_site/`.
+- Node syntax, static build and **10 grouped checks pass**, including bilingual content, approval requirements, unsafe links, contacts and enquiries. CI runs both build and checks before publishing `_site/`.
 - GitHub Pages HTTPS test address returned HTTP 200 and rendered all five page images without captured application errors or warnings. Files and fonts use relative paths and work under `/luan-website/`.
 - Pages CMS authenticated as **luansico**. A page-copy save created commit `9f29c1e`, preserved every required hidden/system copy field, and deployed successfully in run `38047586669`. An existing approved stock camera photo was uploaded through the media library to `assets/uploads/camera.jpg`; this remains illustrative material.
+- Portfolio and contact saves were also exercised in the hosted CMS. Empty optional list fields are omitted by Pages CMS; the application accepts that omission and still rejects malformed values. A regression check validates the raw editable JSON as well as generated content. The initial rejected portfolio build preserved the last working deployment.
 - CMS access uses owner GitHub sign-in only. The owner declined an email collaborator invitation; none was sent.
 - Chrome checks used measured **320 and 390 CSS-pixel widths**, with no horizontal overflow. The earlier layout baseline also passed 768/1024/1440 checks in the in-app browser.
 - Short WhatsApp drafts retain Albanian characters, newlines and `& # + ?`, address the confirmed public number, and permit an empty email. Long encoded drafts above 2,000 URL characters fall back to copy/paste into WhatsApp. Preparing a message focuses the result title and places actions above the preview.
@@ -16,7 +17,7 @@ Verified 10 October 2026. The website is published from the dedicated public rep
 
 ## Domain transition
 
-GitHub Pages custom domain is set to `luan.si`. Dynadot saved four GitHub apex A records, `www` CNAME to `luansico.github.io`, and the GitHub ownership-verification TXT record. Dynadot's saved form was reopened and inspected. DNS propagation, GitHub ownership verification and HTTPS certificate issuance must finish before the custom domain is considered verified. Preserve the verification TXT record after completion.
+GitHub Pages custom domain is set to `luan.si`. Dynadot saved four GitHub apex A records, `www` CNAME to `luansico.github.io`, and the GitHub ownership-verification TXT record. Dynadot's saved form was reopened and inspected. GitHub confirmed ownership verification for `luan.si`. Both Dynadot nameservers and a public resolver returned the four GitHub A records. Older resolver caches can still show the previous Dynadot parking page. HTTPS certificate issuance remains pending; Enforce HTTPS is unavailable until GitHub provisions it. Preserve the verification TXT record after completion.
 
 ## Practical limits
 
