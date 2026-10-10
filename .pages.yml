@@ -1367,6 +1367,14 @@
               "required": true,
               "hidden": true,
               "readonly": true
+            },
+            {
+              "name": "longWhatsappInstruction",
+              "label": "Long WhatsApp instruction",
+              "type": "text",
+              "required": true,
+              "hidden": true,
+              "readonly": true
             }
           ]
         },
@@ -2379,6 +2387,14 @@
               "name": "adminLink",
               "type": "text",
               "label": "admin Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "longWhatsappInstruction",
+              "label": "Long WhatsApp instruction",
+              "type": "text",
               "required": true,
               "hidden": true,
               "readonly": true

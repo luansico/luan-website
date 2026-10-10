@@ -10,7 +10,7 @@
   function httpsUrl(value) {
     try { const u = new URL(value); return u.protocol === "https:" && !u.username && !u.password; } catch { return false; }
   }
-  function localAsset(value) { return typeof value === "string" && /^assets\/[a-zA-Z0-9_/-]+\.(jpg|jpeg|png|webp|svg)$/.test(value) && !value.includes(".."); }
+  function localAsset(value) { return typeof value === "string" && /^assets\/[a-zA-Z0-9_/-]+\.(jpg|jpeg|png|webp)$/.test(value) && !value.includes(".."); }
   function emailAddress(value) { return typeof value === "string" && /^[^\s@\u0000-\u001f]+@[^\s@\u0000-\u001f]+\.[^\s@\u0000-\u001f]+$/.test(value) && value.length <= 180 && !/[<>?&#]/.test(value); }
   function validateSite(site) {
     requireValue(site && languages.includes(site.defaultLanguage), "Invalid default language.");
@@ -58,14 +58,14 @@
   const $ = selector => document.querySelector(selector);
   let site;
   try { site = validateSite(window.LUAN_SITE); }
-  catch (error) { $("#config-error").textContent = "Website configuration needs correction: " + error.message; $("#config-error").hidden = false; $("#enquiry-form").hidden = true; return; }
+  catch (error) { $("#config-error").textContent = "Ju lutemi na kontaktoni në WhatsApp ose telefon. / Please contact us on WhatsApp or by phone."; $("#config-error").hidden = false; $("#enquiry-form").hidden = true; return; }
   let lang = site.defaultLanguage;
   try { const stored = localStorage.getItem("luan-language"); if (languages.includes(stored)) lang = stored; } catch { /* Browsing without storage still works. */ }
   const translations = window.LUAN_TRANSLATIONS;
   let filter = "all";
   let currentProject = null;
   let preparedData = null;
-  function t(key) { return translations[lang][key]; }
+  function t(key) { return translations[lang]?.[key] ?? translations.sq?.[key] ?? ""; }
   function textBlock(element, value) {
     element.replaceChildren();
     value.split("<br>").forEach((line, i) => { if (i) element.append(document.createElement("br")); element.append(document.createTextNode(line)); });
@@ -142,6 +142,8 @@
     send.href = site.contact.whatsapp ? whatsappUrl(site.contact.whatsapp, message) : site.contact.email ? "mailto:" + site.contact.email + "?subject=" + encodeURIComponent(t("enquirySubject") + " — " + serviceLabel(preparedData.service)) + "&body=" + encodeURIComponent(message) : site.contact.linkedin;
     if (site.contact.email && !site.contact.whatsapp) send.removeAttribute("target"); else send.target = "_blank";
     $("#enquiry-result").hidden = false; $("#copy-status").textContent = ""; updateFormIntroduction();
+    if (site.contact.whatsapp && send.href.length > 2000) { send.href = whatsappUrl(site.contact.whatsapp, ""); $("#result-instruction").textContent = t("longWhatsappInstruction"); }
+    if (scroll) $(".result-title").focus({preventScroll:true});
     if (scroll) $("#enquiry-result").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
   }
   function clearEnquiry() { preparedData = null; $("#enquiry-result").hidden = true; $("#enquiry-text").value = ""; $("#copy-status").textContent = ""; $("#send-enquiry").removeAttribute("href"); $("#form-error").hidden = true; }

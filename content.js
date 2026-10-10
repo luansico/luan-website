@@ -244,7 +244,8 @@ window.LUAN_TRANSLATIONS = {
     "openWhatsapp": "Hap WhatsApp",
     "whatsappHint": "Mund të dërgoni foto ose video të problemit në bisedën në WhatsApp.",
     "enquirySource": "Burimi: faqja e Luan Sinanit",
-    "adminLink": "Redakto faqen"
+    "adminLink": "Redakto faqen",
+    "longWhatsappInstruction": "Kopjoni mesazhin, hapni WhatsApp dhe ngjiteni në bisedë. Kërkesa nuk është dërguar ende."
   },
   "en": {
     "title": "Luan Sinani | Electrical & Technical Services",
@@ -383,7 +384,8 @@ window.LUAN_TRANSLATIONS = {
     "openWhatsapp": "Open WhatsApp",
     "whatsappHint": "You can send photos or videos of the issue in your WhatsApp chat.",
     "enquirySource": "Source: Luan Sinani website",
-    "adminLink": "Edit website"
+    "adminLink": "Edit website",
+    "longWhatsappInstruction": "Copy the message, open WhatsApp and paste it into the chat. Your enquiry has not been sent yet."
   }
 };
 window.LUAN_SERVICES = [
