@@ -1,0 +1,2391 @@
+{
+  "media": {
+    "input": "assets/uploads",
+    "output": "assets/uploads",
+    "extensions": [
+      "jpg",
+      "jpeg",
+      "png",
+      "webp"
+    ],
+    "rename": "safe"
+  },
+  "components": {
+    "bilingual": {
+      "type": "object",
+      "fields": [
+        {
+          "name": "sq",
+          "type": "text",
+          "label": "Shqip / Albanian",
+          "required": true
+        },
+        {
+          "name": "en",
+          "type": "text",
+          "label": "English",
+          "required": true
+        }
+      ]
+    }
+  },
+  "content": [
+    {
+      "name": "contact",
+      "label": "Contact and settings",
+      "type": "file",
+      "path": "data/site.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "defaultLanguage",
+          "type": "select",
+          "label": "Default language",
+          "required": true,
+          "options": {
+            "values": [
+              {
+                "name": "sq",
+                "label": "Shqip"
+              },
+              {
+                "name": "en",
+                "label": "English"
+              }
+            ]
+          }
+        },
+        {
+          "name": "contact",
+          "type": "object",
+          "label": "Public contact details",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "linkedin",
+              "type": "string",
+              "required": true,
+              "pattern": "^https://www\\.linkedin\\.com/in/"
+            },
+            {
+              "name": "whatsapp",
+              "type": "string",
+              "label": "WhatsApp number",
+              "description": "Public number: +355697415353. Use + and country code, no spaces. Leave empty to disable.",
+              "pattern": "^\\+[1-9][0-9]{6,14}$"
+            },
+            {
+              "name": "phone",
+              "type": "string",
+              "label": "Public call number",
+              "pattern": "^\\+[1-9][0-9]{6,14}$"
+            },
+            {
+              "name": "email",
+              "type": "string",
+              "label": "Public enquiries email",
+              "description": "Optional. Add only a working inbox you want displayed publicly."
+            },
+            {
+              "name": "socials",
+              "type": "object",
+              "label": "YouTube / social profiles",
+              "list": true,
+              "fields": [
+                {
+                  "name": "label",
+                  "type": "string",
+                  "required": true
+                },
+                {
+                  "name": "url",
+                  "type": "string",
+                  "required": true,
+                  "pattern": "^https://"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "projects",
+      "label": "Projects and portfolio",
+      "type": "file",
+      "path": "data/projects.json",
+      "format": "json",
+      "list": {
+        "collapsible": {
+          "collapsed": true,
+          "summary": "{fields.title.sq}"
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "label": "Unique project ID",
+          "required": true,
+          "pattern": "^[a-z0-9-]+$"
+        },
+        {
+          "name": "category",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": [
+              {
+                "name": "electrical",
+                "label": "Electrical"
+              },
+              {
+                "name": "cameras",
+                "label": "Cameras"
+              },
+              {
+                "name": "it",
+                "label": "IT and networks"
+              }
+            ]
+          }
+        },
+        {
+          "name": "kind",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": [
+              {
+                "name": "example",
+                "label": "Illustrative example"
+              },
+              {
+                "name": "project",
+                "label": "Real completed project"
+              }
+            ]
+          }
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "required": true,
+          "description": "JPG, PNG or WebP, maximum 5 MB. Choose a photo approved for public use."
+        },
+        {
+          "name": "title",
+          "label": "Project title",
+          "component": "bilingual"
+        },
+        {
+          "name": "summary",
+          "label": "Short description",
+          "component": "bilingual"
+        },
+        {
+          "name": "detail",
+          "label": "Full description",
+          "component": "bilingual"
+        },
+        {
+          "name": "items",
+          "type": "object",
+          "fields": [
+            {
+              "name": "sq",
+              "type": "string",
+              "label": "Shqip",
+              "list": {
+                "min": 1
+              },
+              "required": true
+            },
+            {
+              "name": "en",
+              "type": "string",
+              "label": "English",
+              "list": {
+                "min": 1
+              },
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "links",
+          "type": "object",
+          "label": "YouTube / social video links",
+          "list": true,
+          "fields": [
+            {
+              "name": "label",
+              "label": "Link label",
+              "component": "bilingual"
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "required": true,
+              "pattern": "^https://"
+            }
+          ]
+        },
+        {
+          "name": "approved",
+          "type": "boolean",
+          "label": "Permission to publish confirmed",
+          "description": "Required for real projects. Check only after approval of the text and media."
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "label": "Public approval note",
+          "description": "Required for real projects; e.g. Owner approved for publication. This is PUBLIC — no private emails, client details or credentials."
+        }
+      ]
+    },
+    {
+      "name": "reviews",
+      "label": "Client references",
+      "type": "file",
+      "path": "data/reviews.json",
+      "format": "json",
+      "list": true,
+      "fields": [
+        {
+          "name": "name",
+          "type": "string",
+          "label": "Approved public display name",
+          "required": true
+        },
+        {
+          "name": "quote",
+          "label": "Client quote",
+          "component": "bilingual"
+        },
+        {
+          "name": "context",
+          "label": "Service / context",
+          "component": "bilingual"
+        },
+        {
+          "name": "approved",
+          "type": "boolean",
+          "label": "Client permission confirmed",
+          "required": true
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "label": "Public approval note",
+          "required": true,
+          "description": "PUBLIC text; do not enter private client details."
+        }
+      ]
+    },
+    {
+      "name": "services",
+      "label": "Services",
+      "type": "file",
+      "path": "data/services.json",
+      "format": "json",
+      "list": {
+        "collapsible": {
+          "collapsed": true,
+          "summary": "{fields.title.sq}"
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "readonly": true
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "hidden": true,
+          "readonly": true
+        },
+        {
+          "name": "title",
+          "label": "Service title",
+          "component": "bilingual"
+        },
+        {
+          "name": "description",
+          "label": "Description",
+          "component": "bilingual"
+        },
+        {
+          "name": "items",
+          "type": "object",
+          "fields": [
+            {
+              "name": "sq",
+              "type": "string",
+              "label": "Shqip",
+              "list": {
+                "min": 1
+              },
+              "required": true
+            },
+            {
+              "name": "en",
+              "type": "string",
+              "label": "English",
+              "list": {
+                "min": 1
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page",
+      "label": "Page text (Shqip / English)",
+      "type": "file",
+      "path": "data/copy.json",
+      "format": "json",
+      "fields": [
+        {
+          "name": "sq",
+          "type": "object",
+          "label": "Shqip",
+          "fields": [
+            {
+              "name": "title",
+              "type": "text",
+              "label": "title",
+              "required": true
+            },
+            {
+              "name": "description",
+              "type": "text",
+              "label": "description",
+              "required": true
+            },
+            {
+              "name": "skip",
+              "type": "text",
+              "label": "skip",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "brandCaption",
+              "type": "text",
+              "label": "brand Caption",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "menu",
+              "type": "text",
+              "label": "menu",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navigation",
+              "type": "text",
+              "label": "navigation",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navServices",
+              "type": "text",
+              "label": "nav Services",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navAbout",
+              "type": "text",
+              "label": "nav About",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navWork",
+              "type": "text",
+              "label": "nav Work",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navContact",
+              "type": "text",
+              "label": "nav Contact",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroEyebrow",
+              "type": "text",
+              "label": "hero Eyebrow",
+              "required": true
+            },
+            {
+              "name": "heroLine1",
+              "type": "text",
+              "label": "hero Line1",
+              "required": true
+            },
+            {
+              "name": "heroLine2",
+              "type": "text",
+              "label": "hero Line2",
+              "required": true
+            },
+            {
+              "name": "heroDescription",
+              "type": "text",
+              "label": "hero Description",
+              "required": true
+            },
+            {
+              "name": "heroCta",
+              "type": "text",
+              "label": "hero Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroSecondary",
+              "type": "text",
+              "label": "hero Secondary",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroPerson",
+              "type": "text",
+              "label": "hero Person",
+              "required": true
+            },
+            {
+              "name": "heroAlt",
+              "type": "text",
+              "label": "hero Alt",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "stockLabel",
+              "type": "text",
+              "label": "stock Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "imageNoteSmall",
+              "type": "text",
+              "label": "image Note Small",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "imageNote",
+              "type": "text",
+              "label": "image Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "location",
+              "type": "text",
+              "label": "location",
+              "required": true
+            },
+            {
+              "name": "specialties",
+              "type": "text",
+              "label": "specialties",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty1",
+              "type": "text",
+              "label": "specialty1",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty2",
+              "type": "text",
+              "label": "specialty2",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty3",
+              "type": "text",
+              "label": "specialty3",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty4",
+              "type": "text",
+              "label": "specialty4",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "servicesEyebrow",
+              "type": "text",
+              "label": "services Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "servicesTitle",
+              "type": "text",
+              "label": "services Title",
+              "required": true
+            },
+            {
+              "name": "servicesIntro",
+              "type": "text",
+              "label": "services Intro",
+              "required": true
+            },
+            {
+              "name": "servicesNote",
+              "type": "text",
+              "label": "services Note",
+              "required": true
+            },
+            {
+              "name": "serviceCta",
+              "type": "text",
+              "label": "service Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "aboutEyebrow",
+              "type": "text",
+              "label": "about Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "aboutTitle",
+              "type": "text",
+              "label": "about Title",
+              "required": true
+            },
+            {
+              "name": "aboutBody",
+              "type": "text",
+              "label": "about Body",
+              "required": true
+            },
+            {
+              "name": "aboutBody2",
+              "type": "text",
+              "label": "about Body2",
+              "required": true
+            },
+            {
+              "name": "aboutLink",
+              "type": "text",
+              "label": "about Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "credentialsIntro",
+              "type": "text",
+              "label": "credentials Intro",
+              "required": true
+            },
+            {
+              "name": "credential1Title",
+              "type": "text",
+              "label": "credential1 Title",
+              "required": true
+            },
+            {
+              "name": "credential1Body",
+              "type": "text",
+              "label": "credential1 Body",
+              "required": true
+            },
+            {
+              "name": "credential2Title",
+              "type": "text",
+              "label": "credential2 Title",
+              "required": true
+            },
+            {
+              "name": "credential2Body",
+              "type": "text",
+              "label": "credential2 Body",
+              "required": true
+            },
+            {
+              "name": "credential3Date",
+              "type": "text",
+              "label": "credential3 Date",
+              "required": true
+            },
+            {
+              "name": "credential3Title",
+              "type": "text",
+              "label": "credential3 Title",
+              "required": true
+            },
+            {
+              "name": "credential3Body",
+              "type": "text",
+              "label": "credential3 Body",
+              "required": true
+            },
+            {
+              "name": "workEyebrow",
+              "type": "text",
+              "label": "work Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "workTitle",
+              "type": "text",
+              "label": "work Title",
+              "required": true
+            },
+            {
+              "name": "workIntro",
+              "type": "text",
+              "label": "work Intro",
+              "required": true
+            },
+            {
+              "name": "filters",
+              "type": "text",
+              "label": "filters",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterAll",
+              "type": "text",
+              "label": "filter All",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterElectrical",
+              "type": "text",
+              "label": "filter Electrical",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterCameras",
+              "type": "text",
+              "label": "filter Cameras",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterIt",
+              "type": "text",
+              "label": "filter It",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "exampleLabel",
+              "type": "text",
+              "label": "example Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "projectLabel",
+              "type": "text",
+              "label": "project Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "examplesNote",
+              "type": "text",
+              "label": "examples Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "exampleDisclaimer",
+              "type": "text",
+              "label": "example Disclaimer",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "projectDisclaimer",
+              "type": "text",
+              "label": "project Disclaimer",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "viewDetails",
+              "type": "text",
+              "label": "view Details",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "itemsShown",
+              "type": "text",
+              "label": "items Shown",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "noProjects",
+              "type": "text",
+              "label": "no Projects",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "discussProject",
+              "type": "text",
+              "label": "discuss Project",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "referencesEyebrow",
+              "type": "text",
+              "label": "references Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "referencesTitle",
+              "type": "text",
+              "label": "references Title",
+              "required": true
+            },
+            {
+              "name": "referencesBody",
+              "type": "text",
+              "label": "references Body",
+              "required": true
+            },
+            {
+              "name": "referencesLink",
+              "type": "text",
+              "label": "references Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "processEyebrow",
+              "type": "text",
+              "label": "process Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "processTitle",
+              "type": "text",
+              "label": "process Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "step1Title",
+              "type": "text",
+              "label": "step1 Title",
+              "required": true
+            },
+            {
+              "name": "step1Body",
+              "type": "text",
+              "label": "step1 Body",
+              "required": true
+            },
+            {
+              "name": "step2Title",
+              "type": "text",
+              "label": "step2 Title",
+              "required": true
+            },
+            {
+              "name": "step2Body",
+              "type": "text",
+              "label": "step2 Body",
+              "required": true
+            },
+            {
+              "name": "step3Title",
+              "type": "text",
+              "label": "step3 Title",
+              "required": true
+            },
+            {
+              "name": "step3Body",
+              "type": "text",
+              "label": "step3 Body",
+              "required": true
+            },
+            {
+              "name": "faqEyebrow",
+              "type": "text",
+              "label": "faq Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "faqTitle",
+              "type": "text",
+              "label": "faq Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "faq1Title",
+              "type": "text",
+              "label": "faq1 Title",
+              "required": true
+            },
+            {
+              "name": "faq1Body",
+              "type": "text",
+              "label": "faq1 Body",
+              "required": true
+            },
+            {
+              "name": "faq2Title",
+              "type": "text",
+              "label": "faq2 Title",
+              "required": true
+            },
+            {
+              "name": "faq2Body",
+              "type": "text",
+              "label": "faq2 Body",
+              "required": true
+            },
+            {
+              "name": "faq3Title",
+              "type": "text",
+              "label": "faq3 Title",
+              "required": true
+            },
+            {
+              "name": "faq3Body",
+              "type": "text",
+              "label": "faq3 Body",
+              "required": true
+            },
+            {
+              "name": "faq4Title",
+              "type": "text",
+              "label": "faq4 Title",
+              "required": true
+            },
+            {
+              "name": "faq4Body",
+              "type": "text",
+              "label": "faq4 Body",
+              "required": true
+            },
+            {
+              "name": "contactEyebrow",
+              "type": "text",
+              "label": "contact Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "contactTitle",
+              "type": "text",
+              "label": "contact Title",
+              "required": true
+            },
+            {
+              "name": "contactBody",
+              "type": "text",
+              "label": "contact Body",
+              "required": true
+            },
+            {
+              "name": "contactLocation",
+              "type": "text",
+              "label": "contact Location",
+              "required": true
+            },
+            {
+              "name": "contactLinkedin",
+              "type": "text",
+              "label": "contact Linkedin",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "contactSmall",
+              "type": "text",
+              "label": "contact Small",
+              "required": true
+            },
+            {
+              "name": "formTitle",
+              "type": "text",
+              "label": "form Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formIntro",
+              "type": "text",
+              "label": "form Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formEmailIntro",
+              "type": "text",
+              "label": "form Email Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelName",
+              "type": "text",
+              "label": "label Name",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelEmail",
+              "type": "text",
+              "label": "label Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelService",
+              "type": "text",
+              "label": "label Service",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelLocation",
+              "type": "text",
+              "label": "label Location",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelPhone",
+              "type": "text",
+              "label": "label Phone",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelMessage",
+              "type": "text",
+              "label": "label Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderName",
+              "type": "text",
+              "label": "placeholder Name",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderEmail",
+              "type": "text",
+              "label": "placeholder Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderLocation",
+              "type": "text",
+              "label": "placeholder Location",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderMessage",
+              "type": "text",
+              "label": "placeholder Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "selectService",
+              "type": "text",
+              "label": "select Service",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "serviceOther",
+              "type": "text",
+              "label": "service Other",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formNote",
+              "type": "text",
+              "label": "form Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formSubmit",
+              "type": "text",
+              "label": "form Submit",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formInvalid",
+              "type": "text",
+              "label": "form Invalid",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultTitle",
+              "type": "text",
+              "label": "result Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultInstruction",
+              "type": "text",
+              "label": "result Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultEmailInstruction",
+              "type": "text",
+              "label": "result Email Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultLabel",
+              "type": "text",
+              "label": "result Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copyMessage",
+              "type": "text",
+              "label": "copy Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openLinkedin",
+              "type": "text",
+              "label": "open Linkedin",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openEmail",
+              "type": "text",
+              "label": "open Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copySuccess",
+              "type": "text",
+              "label": "copy Success",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copyFallback",
+              "type": "text",
+              "label": "copy Fallback",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquirySubject",
+              "type": "text",
+              "label": "enquiry Subject",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquiryGreeting",
+              "type": "text",
+              "label": "enquiry Greeting",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquiryClosing",
+              "type": "text",
+              "label": "enquiry Closing",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "footerDescription",
+              "type": "text",
+              "label": "footer Description",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacy",
+              "type": "text",
+              "label": "privacy",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "backToTop",
+              "type": "text",
+              "label": "back To Top",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "close",
+              "type": "text",
+              "label": "close",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyEyebrow",
+              "type": "text",
+              "label": "privacy Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyTitle",
+              "type": "text",
+              "label": "privacy Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody",
+              "type": "text",
+              "label": "privacy Body",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody2",
+              "type": "text",
+              "label": "privacy Body2",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody3",
+              "type": "text",
+              "label": "privacy Body3",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappCta",
+              "type": "text",
+              "label": "whatsapp Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappGreeting",
+              "type": "text",
+              "label": "whatsapp Greeting",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formWhatsappIntro",
+              "type": "text",
+              "label": "form Whatsapp Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultWhatsappInstruction",
+              "type": "text",
+              "label": "result Whatsapp Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openWhatsapp",
+              "type": "text",
+              "label": "open Whatsapp",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappHint",
+              "type": "text",
+              "label": "whatsapp Hint",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquirySource",
+              "type": "text",
+              "label": "enquiry Source",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "adminLink",
+              "type": "text",
+              "label": "admin Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            }
+          ]
+        },
+        {
+          "name": "en",
+          "type": "object",
+          "label": "English",
+          "fields": [
+            {
+              "name": "title",
+              "type": "text",
+              "label": "title",
+              "required": true
+            },
+            {
+              "name": "description",
+              "type": "text",
+              "label": "description",
+              "required": true
+            },
+            {
+              "name": "skip",
+              "type": "text",
+              "label": "skip",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "brandCaption",
+              "type": "text",
+              "label": "brand Caption",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "menu",
+              "type": "text",
+              "label": "menu",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navigation",
+              "type": "text",
+              "label": "navigation",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navServices",
+              "type": "text",
+              "label": "nav Services",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navAbout",
+              "type": "text",
+              "label": "nav About",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navWork",
+              "type": "text",
+              "label": "nav Work",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "navContact",
+              "type": "text",
+              "label": "nav Contact",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroEyebrow",
+              "type": "text",
+              "label": "hero Eyebrow",
+              "required": true
+            },
+            {
+              "name": "heroLine1",
+              "type": "text",
+              "label": "hero Line1",
+              "required": true
+            },
+            {
+              "name": "heroLine2",
+              "type": "text",
+              "label": "hero Line2",
+              "required": true
+            },
+            {
+              "name": "heroDescription",
+              "type": "text",
+              "label": "hero Description",
+              "required": true
+            },
+            {
+              "name": "heroCta",
+              "type": "text",
+              "label": "hero Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroSecondary",
+              "type": "text",
+              "label": "hero Secondary",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "heroPerson",
+              "type": "text",
+              "label": "hero Person",
+              "required": true
+            },
+            {
+              "name": "heroAlt",
+              "type": "text",
+              "label": "hero Alt",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "stockLabel",
+              "type": "text",
+              "label": "stock Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "imageNoteSmall",
+              "type": "text",
+              "label": "image Note Small",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "imageNote",
+              "type": "text",
+              "label": "image Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "location",
+              "type": "text",
+              "label": "location",
+              "required": true
+            },
+            {
+              "name": "specialties",
+              "type": "text",
+              "label": "specialties",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty1",
+              "type": "text",
+              "label": "specialty1",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty2",
+              "type": "text",
+              "label": "specialty2",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty3",
+              "type": "text",
+              "label": "specialty3",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "specialty4",
+              "type": "text",
+              "label": "specialty4",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "servicesEyebrow",
+              "type": "text",
+              "label": "services Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "servicesTitle",
+              "type": "text",
+              "label": "services Title",
+              "required": true
+            },
+            {
+              "name": "servicesIntro",
+              "type": "text",
+              "label": "services Intro",
+              "required": true
+            },
+            {
+              "name": "servicesNote",
+              "type": "text",
+              "label": "services Note",
+              "required": true
+            },
+            {
+              "name": "serviceCta",
+              "type": "text",
+              "label": "service Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "aboutEyebrow",
+              "type": "text",
+              "label": "about Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "aboutTitle",
+              "type": "text",
+              "label": "about Title",
+              "required": true
+            },
+            {
+              "name": "aboutBody",
+              "type": "text",
+              "label": "about Body",
+              "required": true
+            },
+            {
+              "name": "aboutBody2",
+              "type": "text",
+              "label": "about Body2",
+              "required": true
+            },
+            {
+              "name": "aboutLink",
+              "type": "text",
+              "label": "about Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "credentialsIntro",
+              "type": "text",
+              "label": "credentials Intro",
+              "required": true
+            },
+            {
+              "name": "credential1Title",
+              "type": "text",
+              "label": "credential1 Title",
+              "required": true
+            },
+            {
+              "name": "credential1Body",
+              "type": "text",
+              "label": "credential1 Body",
+              "required": true
+            },
+            {
+              "name": "credential2Title",
+              "type": "text",
+              "label": "credential2 Title",
+              "required": true
+            },
+            {
+              "name": "credential2Body",
+              "type": "text",
+              "label": "credential2 Body",
+              "required": true
+            },
+            {
+              "name": "credential3Date",
+              "type": "text",
+              "label": "credential3 Date",
+              "required": true
+            },
+            {
+              "name": "credential3Title",
+              "type": "text",
+              "label": "credential3 Title",
+              "required": true
+            },
+            {
+              "name": "credential3Body",
+              "type": "text",
+              "label": "credential3 Body",
+              "required": true
+            },
+            {
+              "name": "workEyebrow",
+              "type": "text",
+              "label": "work Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "workTitle",
+              "type": "text",
+              "label": "work Title",
+              "required": true
+            },
+            {
+              "name": "workIntro",
+              "type": "text",
+              "label": "work Intro",
+              "required": true
+            },
+            {
+              "name": "filters",
+              "type": "text",
+              "label": "filters",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterAll",
+              "type": "text",
+              "label": "filter All",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterElectrical",
+              "type": "text",
+              "label": "filter Electrical",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterCameras",
+              "type": "text",
+              "label": "filter Cameras",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "filterIt",
+              "type": "text",
+              "label": "filter It",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "exampleLabel",
+              "type": "text",
+              "label": "example Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "projectLabel",
+              "type": "text",
+              "label": "project Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "examplesNote",
+              "type": "text",
+              "label": "examples Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "exampleDisclaimer",
+              "type": "text",
+              "label": "example Disclaimer",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "projectDisclaimer",
+              "type": "text",
+              "label": "project Disclaimer",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "viewDetails",
+              "type": "text",
+              "label": "view Details",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "itemsShown",
+              "type": "text",
+              "label": "items Shown",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "noProjects",
+              "type": "text",
+              "label": "no Projects",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "discussProject",
+              "type": "text",
+              "label": "discuss Project",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "referencesEyebrow",
+              "type": "text",
+              "label": "references Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "referencesTitle",
+              "type": "text",
+              "label": "references Title",
+              "required": true
+            },
+            {
+              "name": "referencesBody",
+              "type": "text",
+              "label": "references Body",
+              "required": true
+            },
+            {
+              "name": "referencesLink",
+              "type": "text",
+              "label": "references Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "processEyebrow",
+              "type": "text",
+              "label": "process Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "processTitle",
+              "type": "text",
+              "label": "process Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "step1Title",
+              "type": "text",
+              "label": "step1 Title",
+              "required": true
+            },
+            {
+              "name": "step1Body",
+              "type": "text",
+              "label": "step1 Body",
+              "required": true
+            },
+            {
+              "name": "step2Title",
+              "type": "text",
+              "label": "step2 Title",
+              "required": true
+            },
+            {
+              "name": "step2Body",
+              "type": "text",
+              "label": "step2 Body",
+              "required": true
+            },
+            {
+              "name": "step3Title",
+              "type": "text",
+              "label": "step3 Title",
+              "required": true
+            },
+            {
+              "name": "step3Body",
+              "type": "text",
+              "label": "step3 Body",
+              "required": true
+            },
+            {
+              "name": "faqEyebrow",
+              "type": "text",
+              "label": "faq Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "faqTitle",
+              "type": "text",
+              "label": "faq Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "faq1Title",
+              "type": "text",
+              "label": "faq1 Title",
+              "required": true
+            },
+            {
+              "name": "faq1Body",
+              "type": "text",
+              "label": "faq1 Body",
+              "required": true
+            },
+            {
+              "name": "faq2Title",
+              "type": "text",
+              "label": "faq2 Title",
+              "required": true
+            },
+            {
+              "name": "faq2Body",
+              "type": "text",
+              "label": "faq2 Body",
+              "required": true
+            },
+            {
+              "name": "faq3Title",
+              "type": "text",
+              "label": "faq3 Title",
+              "required": true
+            },
+            {
+              "name": "faq3Body",
+              "type": "text",
+              "label": "faq3 Body",
+              "required": true
+            },
+            {
+              "name": "faq4Title",
+              "type": "text",
+              "label": "faq4 Title",
+              "required": true
+            },
+            {
+              "name": "faq4Body",
+              "type": "text",
+              "label": "faq4 Body",
+              "required": true
+            },
+            {
+              "name": "contactEyebrow",
+              "type": "text",
+              "label": "contact Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "contactTitle",
+              "type": "text",
+              "label": "contact Title",
+              "required": true
+            },
+            {
+              "name": "contactBody",
+              "type": "text",
+              "label": "contact Body",
+              "required": true
+            },
+            {
+              "name": "contactLocation",
+              "type": "text",
+              "label": "contact Location",
+              "required": true
+            },
+            {
+              "name": "contactLinkedin",
+              "type": "text",
+              "label": "contact Linkedin",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "contactSmall",
+              "type": "text",
+              "label": "contact Small",
+              "required": true
+            },
+            {
+              "name": "formTitle",
+              "type": "text",
+              "label": "form Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formIntro",
+              "type": "text",
+              "label": "form Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formEmailIntro",
+              "type": "text",
+              "label": "form Email Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelName",
+              "type": "text",
+              "label": "label Name",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelEmail",
+              "type": "text",
+              "label": "label Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelService",
+              "type": "text",
+              "label": "label Service",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelLocation",
+              "type": "text",
+              "label": "label Location",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelPhone",
+              "type": "text",
+              "label": "label Phone",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "labelMessage",
+              "type": "text",
+              "label": "label Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderName",
+              "type": "text",
+              "label": "placeholder Name",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderEmail",
+              "type": "text",
+              "label": "placeholder Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderLocation",
+              "type": "text",
+              "label": "placeholder Location",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "placeholderMessage",
+              "type": "text",
+              "label": "placeholder Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "selectService",
+              "type": "text",
+              "label": "select Service",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "serviceOther",
+              "type": "text",
+              "label": "service Other",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formNote",
+              "type": "text",
+              "label": "form Note",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formSubmit",
+              "type": "text",
+              "label": "form Submit",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formInvalid",
+              "type": "text",
+              "label": "form Invalid",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultTitle",
+              "type": "text",
+              "label": "result Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultInstruction",
+              "type": "text",
+              "label": "result Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultEmailInstruction",
+              "type": "text",
+              "label": "result Email Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultLabel",
+              "type": "text",
+              "label": "result Label",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copyMessage",
+              "type": "text",
+              "label": "copy Message",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openLinkedin",
+              "type": "text",
+              "label": "open Linkedin",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openEmail",
+              "type": "text",
+              "label": "open Email",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copySuccess",
+              "type": "text",
+              "label": "copy Success",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "copyFallback",
+              "type": "text",
+              "label": "copy Fallback",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquirySubject",
+              "type": "text",
+              "label": "enquiry Subject",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquiryGreeting",
+              "type": "text",
+              "label": "enquiry Greeting",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquiryClosing",
+              "type": "text",
+              "label": "enquiry Closing",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "footerDescription",
+              "type": "text",
+              "label": "footer Description",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacy",
+              "type": "text",
+              "label": "privacy",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "backToTop",
+              "type": "text",
+              "label": "back To Top",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "close",
+              "type": "text",
+              "label": "close",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyEyebrow",
+              "type": "text",
+              "label": "privacy Eyebrow",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyTitle",
+              "type": "text",
+              "label": "privacy Title",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody",
+              "type": "text",
+              "label": "privacy Body",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody2",
+              "type": "text",
+              "label": "privacy Body2",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "privacyBody3",
+              "type": "text",
+              "label": "privacy Body3",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappCta",
+              "type": "text",
+              "label": "whatsapp Cta",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappGreeting",
+              "type": "text",
+              "label": "whatsapp Greeting",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "formWhatsappIntro",
+              "type": "text",
+              "label": "form Whatsapp Intro",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "resultWhatsappInstruction",
+              "type": "text",
+              "label": "result Whatsapp Instruction",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "openWhatsapp",
+              "type": "text",
+              "label": "open Whatsapp",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "whatsappHint",
+              "type": "text",
+              "label": "whatsapp Hint",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "enquirySource",
+              "type": "text",
+              "label": "enquiry Source",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            },
+            {
+              "name": "adminLink",
+              "type": "text",
+              "label": "admin Link",
+              "required": true,
+              "hidden": true,
+              "readonly": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
