@@ -28,7 +28,7 @@
         "Assess the existing installation and work scope"
       ]
     },
-    "links": []
+    "approved": false
   },
   {
     "id": "camera-example",
@@ -41,7 +41,7 @@
     },
     "summary": {
       "sq": "Diskutimi i vendosjes së kamerave, lidhjes dhe mirëmbajtjes së sistemit.",
-      "en": "Discussing camera placement, connectivity and system maintenance."
+      "en": "Camera placement, connectivity and system maintenance for your space."
     },
     "detail": {
       "sq": "Shembull ilustrues i një kërkese për sistem kamerash. Pikat e mbulimit, pajisjet dhe lidhja diskutohen sipas hapësirës dhe nevojës suaj.",
@@ -59,7 +59,7 @@
         "Agree installation, configuration and maintenance needs"
       ]
     },
-    "links": []
+    "approved": false
   },
   {
     "id": "it-example",
@@ -90,6 +90,6 @@
         "Connect printers and other network devices"
       ]
     },
-    "links": []
+    "approved": false
   }
 ]
