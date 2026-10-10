@@ -1,0 +1,95 @@
+[
+  {
+    "id": "electrical-example",
+    "category": "electrical",
+    "kind": "example",
+    "image": "assets/electrical-work.jpg",
+    "title": {
+      "sq": "Instalime për një hapësirë të re",
+      "en": "Electrical work for a new space"
+    },
+    "summary": {
+      "sq": "Planifikimi i pikave elektrike, ndriçimit dhe lidhjeve për një shtëpi ose ambient pune.",
+      "en": "Planning power points, lighting and connections for a home or workspace."
+    },
+    "detail": {
+      "sq": "Shembull ilustrues për një bisedë fillestare rreth instalimeve. Nevojat reale, materialet dhe fusha e ndërhyrjes përcaktohen pas diskutimit të hapësirës.",
+      "en": "An illustrative starting point for an installation enquiry. Actual requirements, materials and scope are determined after discussing the space."
+    },
+    "items": {
+      "sq": [
+        "Diskutimi i përdorimit të hapësirës",
+        "Nevojat për ndriçim dhe pika elektrike",
+        "Vlerësimi i instalimit ekzistues dhe fushës së punës"
+      ],
+      "en": [
+        "Discuss how the space will be used",
+        "Identify lighting and power-point needs",
+        "Assess the existing installation and work scope"
+      ]
+    },
+    "links": []
+  },
+  {
+    "id": "camera-example",
+    "category": "cameras",
+    "kind": "example",
+    "image": "assets/camera.jpg",
+    "title": {
+      "sq": "Kamera për shtëpi & biznes",
+      "en": "Camera systems for home & business"
+    },
+    "summary": {
+      "sq": "Diskutimi i vendosjes së kamerave, lidhjes dhe mirëmbajtjes së sistemit.",
+      "en": "Discussing camera placement, connectivity and system maintenance."
+    },
+    "detail": {
+      "sq": "Shembull ilustrues i një kërkese për sistem kamerash. Pikat e mbulimit, pajisjet dhe lidhja diskutohen sipas hapësirës dhe nevojës suaj.",
+      "en": "An illustrative camera-system enquiry. Coverage areas, equipment and connectivity are discussed around your space and requirements."
+    },
+    "items": {
+      "sq": [
+        "Përcaktimi i zonave për mbulim",
+        "Diskutimi i pajisjeve dhe kabllimit",
+        "Montimi, konfigurimi dhe mirëmbajtja sipas marrëveshjes"
+      ],
+      "en": [
+        "Identify the areas that need coverage",
+        "Discuss equipment and cabling",
+        "Agree installation, configuration and maintenance needs"
+      ]
+    },
+    "links": []
+  },
+  {
+    "id": "it-example",
+    "category": "it",
+    "kind": "example",
+    "image": "assets/computer-repair.jpg",
+    "title": {
+      "sq": "Pajisje që punojnë së bashku",
+      "en": "Devices that work together"
+    },
+    "summary": {
+      "sq": "Mbështetje për kompjuterë, printerë dhe lidhjet e rrjetit në ambientin tuaj të punës.",
+      "en": "Support for computers, printers and network connections in your workspace."
+    },
+    "detail": {
+      "sq": "Shembull ilustrues për nevojat teknike të një ambienti pune. Fillojmë me problemin konkret dhe pajisjet që përdorni, pastaj diskutojmë hapat e nevojshëm.",
+      "en": "An illustrative example of a workspace's technical needs. Start with the specific issue and the devices you use, then discuss the next steps."
+    },
+    "items": {
+      "sq": [
+        "Identifikimi i problemit dhe pajisjeve",
+        "Mbështetje dhe mirëmbajtje e hardware-it",
+        "Lidhja e printerëve dhe pajisjeve në rrjet"
+      ],
+      "en": [
+        "Identify the issue and affected devices",
+        "Hardware support and maintenance",
+        "Connect printers and other network devices"
+      ]
+    },
+    "links": []
+  }
+]

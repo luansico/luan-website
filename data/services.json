@@ -1,0 +1,98 @@
+[
+  {
+    "id": "electrical",
+    "icon": "bolt",
+    "title": {
+      "sq": "Instalime elektrike",
+      "en": "Electrical installation"
+    },
+    "description": {
+      "sq": "Instalime dhe mbështetje teknike për sistemet elektrike të hapësirës suaj.",
+      "en": "Installation work and technical support for the electrical systems in your space."
+    },
+    "items": {
+      "sq": [
+        "Instalime & kabllim",
+        "Ndriçim & pika elektrike",
+        "Mirëmbajtje & diagnostikim"
+      ],
+      "en": [
+        "Installation & wiring",
+        "Lighting & power points",
+        "Maintenance & diagnostics"
+      ]
+    }
+  },
+  {
+    "id": "cameras",
+    "icon": "camera",
+    "title": {
+      "sq": "Sisteme kamerash",
+      "en": "Camera systems"
+    },
+    "description": {
+      "sq": "Montim dhe mirëmbajtje kamerash për nevojat e shtëpisë dhe biznesit.",
+      "en": "Camera assembly and maintenance for home and business requirements."
+    },
+    "items": {
+      "sq": [
+        "Montim kamerash",
+        "Lidhje & konfigurim",
+        "Mirëmbajtje e sistemit"
+      ],
+      "en": [
+        "Camera installation",
+        "Connection & configuration",
+        "System maintenance"
+      ]
+    }
+  },
+  {
+    "id": "computers",
+    "icon": "computer",
+    "title": {
+      "sq": "Kompjuterë & printerë",
+      "en": "Computers & printers"
+    },
+    "description": {
+      "sq": "Mbështetje praktike për pajisjet që përdorni çdo ditë, në shtëpi ose zyrë.",
+      "en": "Practical support for the devices you use every day, at home or in the office."
+    },
+    "items": {
+      "sq": [
+        "Mbështetje teknike IT",
+        "Mirëmbajtje hardware-i",
+        "Instalim & lidhje printerësh"
+      ],
+      "en": [
+        "Technical IT support",
+        "Hardware maintenance",
+        "Printer setup & connection"
+      ]
+    }
+  },
+  {
+    "id": "network",
+    "icon": "network",
+    "title": {
+      "sq": "Rrjete & lidhje",
+      "en": "Networks & connectivity"
+    },
+    "description": {
+      "sq": "Instalim dhe mirëmbajtje lidhjesh rrjeti për pajisjet dhe ambientet tuaja.",
+      "en": "Network installation and connection maintenance for your devices and spaces."
+    },
+    "items": {
+      "sq": [
+        "Instalim rrjetesh",
+        "Kabllim & lidhje pajisjesh",
+        "Mbështetje për hardware-in"
+      ],
+      "en": [
+        "Network installation",
+        "Cabling & device connections",
+        "Network hardware support"
+      ]
+    }
+  }
+]
