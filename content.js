@@ -3,11 +3,9 @@ window.LUAN_SITE = {
   "defaultLanguage": "sq",
   "contact": {
     "name": "Luan Sinani",
-    "linkedin": "https://www.linkedin.com/in/luansinani/",
-    "email": null,
-    "phone": "+355697415353",
-    "socials": [],
-    "whatsapp": "+355697415353"
+    "linkedin": "https://www.linkedin.com/in/luansinani",
+    "whatsapp": "+355697415353",
+    "phone": "+355697415353"
   },
   "projects": [
     {

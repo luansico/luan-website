@@ -4,7 +4,7 @@ Bilingual Albanian/English electrical and technical services website, with Whats
 
 - Repository: https://github.com/luansico/luan-website
 - GitHub Pages test URL: https://luansico.github.io/luan-website/
-- Planned custom domain: https://luan.si
+- Configured custom domain (HTTPS provisioning pending): https://luan.si
 - Editor entry: append `admin/` to the website address. Authentication and editing happen in Pages CMS.
 
 ## Edit content
