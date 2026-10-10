@@ -119,12 +119,7 @@
       "type": "file",
       "path": "data/projects.json",
       "format": "json",
-      "list": {
-        "collapsible": {
-          "collapsed": true,
-          "summary": "{fields.title.sq}"
-        }
-      },
+      "list": true,
       "fields": [
         {
           "name": "id",
@@ -294,12 +289,7 @@
       "type": "file",
       "path": "data/services.json",
       "format": "json",
-      "list": {
-        "collapsible": {
-          "collapsed": true,
-          "summary": "{fields.title.sq}"
-        }
-      },
+      "list": true,
       "fields": [
         {
           "name": "id",
