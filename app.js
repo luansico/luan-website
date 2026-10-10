@@ -16,11 +16,11 @@
     requireValue(site && languages.includes(site.defaultLanguage), "Invalid default language.");
     requireValue(site.contact && typeof site.contact.name === "string" && site.contact.name.trim(), "Missing contact name.");
     requireValue(httpsUrl(site.contact.linkedin) && new URL(site.contact.linkedin).hostname === "www.linkedin.com", "LinkedIn requires a valid HTTPS profile URL.");
-    requireValue(site.contact.email === null || site.contact.email === "" || emailAddress(site.contact.email), "Invalid contact email; use null until confirmed.");
-    requireValue(site.contact.phone === null || site.contact.phone === "" || (typeof site.contact.phone === "string" && /^\+[1-9][0-9]{6,14}$/.test(site.contact.phone)), "Phone must be international format, or null.");
-    requireValue(site.contact.whatsapp === null || site.contact.whatsapp === "" || (typeof site.contact.whatsapp === "string" && /^\+[1-9][0-9]{6,14}$/.test(site.contact.whatsapp)), "WhatsApp must be international format, or null.");
-    requireValue(Array.isArray(site.contact.socials), "Social links must be an array.");
-    for (const link of site.contact.socials) requireValue(typeof link.label === "string" && link.label.trim() && httpsUrl(link.url), "Invalid social link.");
+    requireValue(site.contact.email === undefined || site.contact.email === null || site.contact.email === "" || emailAddress(site.contact.email), "Invalid contact email; use null until confirmed.");
+    requireValue(site.contact.phone === undefined || site.contact.phone === null || site.contact.phone === "" || (typeof site.contact.phone === "string" && /^\+[1-9][0-9]{6,14}$/.test(site.contact.phone)), "Phone must be international format, or null.");
+    requireValue(site.contact.whatsapp === undefined || site.contact.whatsapp === null || site.contact.whatsapp === "" || (typeof site.contact.whatsapp === "string" && /^\+[1-9][0-9]{6,14}$/.test(site.contact.whatsapp)), "WhatsApp must be international format, or null.");
+    requireValue(site.contact.socials === undefined || Array.isArray(site.contact.socials), "Social links must be an array when supplied.");
+    for (const link of site.contact.socials ?? []) requireValue(typeof link.label === "string" && link.label.trim() && httpsUrl(link.url), "Invalid social link.");
     requireValue(Array.isArray(site.projects) && Array.isArray(site.testimonials), "Projects and testimonials must be arrays.");
     const seen = new Set();
     for (const project of site.projects) {
@@ -29,8 +29,9 @@
       requireValue(localAsset(project.image), "Project images must be local assets.");
       for (const field of ["title", "summary", "detail"]) bilingual(project[field], project.id + "." + field);
       requireValue(project.items && languages.every(lang => Array.isArray(project.items[lang]) && project.items[lang].length > 0 && project.items[lang].every(item => typeof item === "string" && item.trim())), "Project scope lists need both languages.");
-      requireValue(Array.isArray(project.links), "Project links must be an array.");
-      for (const link of project.links) { bilingual(link.label, "Media label"); requireValue(httpsUrl(link.url), "Media links must use HTTPS."); }
+      // Pages CMS omits empty optional lists when saving a file.
+      requireValue(project.links === undefined || Array.isArray(project.links), "Project links must be an array when supplied.");
+      for (const link of project.links ?? []) { bilingual(link.label, "Media label"); requireValue(httpsUrl(link.url), "Media links must use HTTPS."); }
       if (project.kind === "project") requireValue(project.approved === true && typeof project.source === "string" && project.source.trim(), "Real projects require approval and a source reference.");
     }
     for (const review of site.testimonials) {
@@ -118,7 +119,7 @@
     const direct = $("#direct-contacts"); direct.replaceChildren();
     if (site.contact.email) { const link = make("a", "direct-contact", site.contact.email); link.href = "mailto:" + site.contact.email; direct.append(link); }
     if (site.contact.phone) { const link = make("a", "direct-contact", site.contact.phone); link.href = "tel:" + site.contact.phone; direct.append(link); }
-    for (const social of site.contact.socials) { const link = externalLink(social.url, social.label, "direct-contact"); link.append(icon("diagonal")); direct.append(link); }
+    for (const social of site.contact.socials ?? []) { const link = externalLink(social.url, social.label, "direct-contact"); link.append(icon("diagonal")); direct.append(link); }
   }
   function renderProjectDetail() {
     const project = currentProject; if (!project) return;
@@ -127,7 +128,7 @@
     const body = make("div", "detail-body"); const heading = make("h2", "", project.title[lang]); heading.id = "dialog-title";
     body.append(make("p", "eyebrow", categoryLabel(project.category) + " / " + t(project.kind === "example" ? "exampleLabel" : "projectLabel")), heading, make("p", "", project.detail[lang]));
     const list = make("ul"); project.items[lang].forEach(item => list.append(make("li", "", item))); body.append(list);
-    if (project.links.length) { const links = make("div", "media-links"); for (const media of project.links) { const link = externalLink(media.url, media.label[lang], "text-link"); link.append(icon("diagonal")); links.append(link); } body.append(links); }
+    if (project.links?.length) { const links = make("div", "media-links"); for (const media of project.links) { const link = externalLink(media.url, media.label[lang], "text-link"); link.append(icon("diagonal")); links.append(link); } body.append(links); }
     body.append(make("p", "detail-disclaimer", t(project.kind === "example" ? "exampleDisclaimer" : "projectDisclaimer")));
     const cta = make("a", "button button-primary", t("discussProject")); cta.href = "#contact"; cta.dataset.service = project.category === "it" ? "network" : project.category; cta.append(icon("arrow")); body.append(cta); root.append(img, body);
   }

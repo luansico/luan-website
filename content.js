@@ -39,7 +39,7 @@ window.LUAN_SITE = {
           "Assess the existing installation and work scope"
         ]
       },
-      "links": []
+      "approved": false
     },
     {
       "id": "camera-example",
@@ -52,7 +52,7 @@ window.LUAN_SITE = {
       },
       "summary": {
         "sq": "Diskutimi i vendosjes së kamerave, lidhjes dhe mirëmbajtjes së sistemit.",
-        "en": "Discussing camera placement, connectivity and system maintenance."
+        "en": "Camera placement, connectivity and system maintenance for your space."
       },
       "detail": {
         "sq": "Shembull ilustrues i një kërkese për sistem kamerash. Pikat e mbulimit, pajisjet dhe lidhja diskutohen sipas hapësirës dhe nevojës suaj.",
@@ -70,7 +70,7 @@ window.LUAN_SITE = {
           "Agree installation, configuration and maintenance needs"
         ]
       },
-      "links": []
+      "approved": false
     },
     {
       "id": "it-example",
@@ -101,7 +101,7 @@ window.LUAN_SITE = {
           "Connect printers and other network devices"
         ]
       },
-      "links": []
+      "approved": false
     }
   ],
   "testimonials": []
@@ -337,7 +337,7 @@ window.LUAN_TRANSLATIONS = {
     "contactBody": "A new project, or equipment that needs some attention? Prepare a short enquiry and start a conversation with Luan.",
     "contactLocation": "Tirana, Albania",
     "contactLinkedin": "Connect on LinkedIn",
-    "contactSmall": "Availability and timing are confirmed during the conversation.",
+    "contactSmall": "Availability and timing are confirmed during our conversation.",
     "formTitle": "Tell me about your project",
     "formIntro": "Prepare your message here, then send it on LinkedIn.",
     "formEmailIntro": "Prepare your message here, then open it in your email app to send.",
