@@ -32,13 +32,13 @@ The www target is the account hostname, without `https://` or the repository nam
 5. Save DNS. Allow propagation and GitHub certificate provisioning; changes can take up to 24 hours. Enable **Enforce HTTPS** when available.
 6. Test https://luan.si, https://www.luan.si and https://luan.si/admin/. Test both languages, mobile rendering, portfolio details and the WhatsApp link. A DNS check passing alone does not verify TLS or application behavior.
 
-With an Actions publishing source, a CNAME file does not configure the custom domain by itself; use repository Pages settings. Once the domain is working, add domain-specific canonical/social preview metadata and update public links where useful.
+With an Actions publishing source, a CNAME file does not configure the custom domain by itself; use repository Pages settings. Domain-specific canonical and social URL metadata use `https://luan.si/`.
 
-## Current transition status (10 October 2026)
+## Verified domain status (10 October 2026)
 
 The repository Pages setting uses `luan.si` and ownership is verified in the **luansico** account. Four apex A records and `www` CNAME are saved at Dynadot. Do not add duplicate records. The verification TXT record is `_github-pages-challenge-luansico` with value `396e83140d19173cd6dc5b5624e9e0`; preserve it.
 
-Older DNS caches may still show the Dynadot parking page. GitHub is provisioning the HTTPS certificate. In Settings → Pages, **Enforce HTTPS** is disabled while provisioning is pending; enable it once available, then verify both HTTPS hostnames without bypassing any browser warning. GitHub says HTTPS can take up to an hour after domain configuration; DNS caches can take longer. No paid certificate or extra hosting service is needed.
+HTTPS is verified for `luan.si` and `www.luan.si`, and **Enforce HTTPS** is enabled. Both HTTP addresses and the www HTTPS address redirect to `https://luan.si/`. The website and `/admin/` return HTTP 200 over a valid HTTPS connection. The temporary certificate follow-up was paused after verification at 13:09 UTC. Older local DNS caches may briefly retain the parking page; no paid certificate or extra hosting service is needed.
 
 If HTTPS remains unavailable after DNS has settled, inspect A/AAAA/CAA records and the `www` CNAME. Current checks found no conflicting apex AAAA or CAA record. GitHub's documented recovery is to remove and re-add the same custom domain to trigger provisioning; this was done once after the DNS update. Avoid repeating it while a certificate is already pending.
 

@@ -15,9 +15,9 @@ Verified 10 October 2026. The website is published from the dedicated public rep
 - Claude Code performed a second **static source review** with tools disabled. Applied its practical findings: long-draft fallback, result focus, clearer optional-email fallback, larger footer targets, label-in-name fixes, safer image types, CSP, translation fallback, asset checks, build-versioned script/style URLs and serialized deployments. Claude did not independently execute browser tests.
 - Public `/admin/` is a launcher for authenticated Pages CMS. No password, access token or private invitation address is embedded in public source.
 
-## Domain transition
+## Domain and HTTPS verified
 
-GitHub Pages custom domain is set to `luan.si`. Dynadot saved four GitHub apex A records, `www` CNAME to `luansico.github.io`, and the GitHub ownership-verification TXT record. Dynadot's saved form was reopened and inspected. GitHub confirmed ownership verification for `luan.si`. Both Dynadot nameservers and a public resolver returned the four GitHub A records. Older resolver caches can still show the previous Dynadot parking page. HTTPS certificate issuance remains pending; Enforce HTTPS is unavailable until GitHub provisions it. Preserve the verification TXT record after completion.
+GitHub Pages custom domain is set to `luan.si`. Dynadot saved four GitHub apex A records, `www` CNAME to `luansico.github.io`, and the GitHub ownership-verification TXT record. Dynadot's saved form was reopened and inspected. GitHub confirmed ownership verification for `luan.si`. Both Dynadot nameservers and a public resolver returned the four GitHub A records. At 13:09 UTC on 10 October 2026, certificate validation passed for both `luan.si` and `www.luan.si`. GitHub Pages DNS check succeeded and Enforce HTTPS was enabled. `https://luan.si/` and `/admin/` returned HTTP 200; the www HTTPS address and both HTTP addresses redirect to `https://luan.si/`. Live browser checks confirmed all five images load, the refreshed enquiry form is empty, a synthetic draft preserves accented characters and punctuation, and the admin launcher points to the owner CMS. No external message was sent. The temporary HTTPS follow-up was paused after verification. Preserve the verification TXT record.
 
 ## Practical limits
 
