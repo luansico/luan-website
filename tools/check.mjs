@@ -15,6 +15,8 @@ const fixtureProject = {id:'synthetic-test',category:'electrical',kind:'example'
 const clone = () => ({...JSON.parse(JSON.stringify(site)),projects:[structuredClone(fixtureProject),{...structuredClone(fixtureProject),id:'synthetic-test-2'}]});
 check('Current CMS configuration is valid', () => {
   assert.equal(validation.validateSite(site), site);
+  const readData = name => JSON.parse(readFileSync(join(root, "data", name + ".json"), "utf8"));
+  validation.validateSite({...readData("site"),projects:readData("projects"),testimonials:readData("reviews")});
 });
 check('Both languages cover all template strings', () => {
   assert.deepEqual(Object.keys(translations.sq).sort(), Object.keys(translations.en).sort());
@@ -47,7 +49,17 @@ check('Unsafe protocols, external image paths and invalid contacts are rejected'
   const a = clone(); a.contact.email = 'owner@example.invalid?body=bad'; assert.throws(() => validation.validateSite(a));
   const b = clone(); b.contact.phone = '+355 123 456'; assert.throws(() => validation.validateSite(b));
 });
-check('Unapproved or incomplete client references are rejected', () => {
+check('CMS omission of optional fields is accepted while malformed values are rejected', () => {
+  const omitted=clone();
+  for(const field of ['email','phone','whatsapp','socials'])delete omitted.contact[field];
+  delete omitted.projects[0].links;
+  assert.doesNotThrow(()=>validation.validateSite(omitted));
+  for(const value of [null,{},'']){
+    const invalid=clone();invalid.projects[0].links=value;assert.throws(()=>validation.validateSite(invalid));
+    invalid.projects[0].links=[];invalid.contact.socials=value;assert.throws(()=>validation.validateSite(invalid));
+  }
+});
+check('Unapproved or incomplete client references are rejected' , () => {
   const test = clone(); test.testimonials = [{name:'Synthetic reviewer',quote:{sq:'Shembull',en:'Example'},context:{sq:'Test',en:'Test'},approved:false,source:'Synthetic validation'}];
   assert.throws(() => validation.validateSite(test));
   test.testimonials[0].approved = true; assert.doesNotThrow(() => validation.validateSite(test));
