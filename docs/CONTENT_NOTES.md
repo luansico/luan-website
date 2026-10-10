@@ -19,7 +19,7 @@ Source review date: 10 October 2026. The supplied LinkedIn PDF is treated as pro
 - Customer-facing descriptions of lighting/power points, camera configuration and network device connections elaborate the listed service areas; they are proposed scope, not verified completed projects.
 - A three-step enquiry/discussion/work process and case-specific scope/pricing are suggested operating copy. Confirm them with Luan.
 - Tirana base is supported, but wider coverage and site visits require confirmation. No service radius, business hours, emergency/24-hour promise or response-time claim is invented.
-- No verified inbox or phone supplied: both remain null, with LinkedIn as the current contact route.
+- The owner supplied the public WhatsApp/call number +355697415353 during setup. WhatsApp is the primary enquiry route; LinkedIn remains available. No public email inbox has been supplied.
 - No client work, video channels, reviews, project counts, licensing, insurance, formal guarantees or ratings are fabricated.
 
 ## Demonstration content

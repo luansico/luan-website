@@ -2,6 +2,10 @@
 
 The website contains a working schema `.pages.yml`, five editable JSON files, media upload configuration, a public `/admin/` entry and a checked GitHub Actions deployment workflow. `/admin/` opens the hosted editor; it does not contain a local password form. Authentication and write access are handled by Pages CMS.
 
+## Active access
+
+The owner chose **GitHub sign-in only**. No collaborator invitations were sent. Sign in as **luansico** and open https://app.pagescms.org/luansico/luan-website/main. Contact, bilingual page-copy and media forms were tested; saves create Git commits and successful checked deployments.
+
 ## One-time owner setup
 
 1. Sign in at https://app.pagescms.org with the owner account **luansico**.
